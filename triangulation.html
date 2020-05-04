@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="lesson">
+    <p>Finding the minimum number of guards for an arbitrary art gallery can be quite hard!</p>
+    <p>To make it a little easier, we can break any polygonal gallery into triangular subgalleries (without adding any vertices)!</p>
+    <p>Try decomposing the galleries from last lesson by removing vertices one at a time.</p>
+
+</div>
+<div class="container">
+    <div class="left">
+        <button class="navButton" onclick="window.location.href = './harderShapes.html';">PREVIOUS LESSON</button>
+    </div>
+    <div class="middle">
+        <canvas id="artGallery">
+            Your browser doesn't support HTML5
+        </canvas>
+        <button class="galleryButton" id="uButton">U Gallery</button>
+        <button class="galleryButton" id="spiralButton">Spiral Gallery</button>
+        <button class="galleryButton" id="combButton">Comb Gallery</button>
+    </div>
+    <div class="right">
+        <button class="navButton">NEXT LESSON</button>
+    </div>
+</div>
+
+<script type=module>
+    import * as Gal from "./gallery.js";
+
+    let canvas = null;
+    let context = null;
+    let canvasWidth = 600;
+    let canvasHeight = 600;
+    let gallery = null;
+
+    window.onload = function() {
+        canvas = document.getElementById("artGallery");
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        context = canvas.getContext("2d");
+
+        let uButton = document.getElementById("uButton");
+        let spiralButton = document.getElementById("spiralButton");
+        let combButton = document.getElementById("combButton");
+
+        uButton.onclick = function(e) {
+            gallery = new Gal.Gallery(canvas, context, Gal.VEE, Gal.CUTMODE);
+            gallery.start();
+        }
+        spiralButton.onclick = function(e) {
+            gallery = new Gal.Gallery(canvas, context, Gal.SPIRAL, Gal.CUTMODE);
+            gallery.start();
+        }
+        combButton.onclick = function(e) {
+            gallery = new Gal.Gallery(canvas, context, Gal.COMB, Gal.CUTMODE);
+            gallery.start();
+        }
+
+        gallery = new Gal.Gallery(canvas, context, Gal.VEE, Gal.CUTMODE);
+        gallery.start();
+    }
+</script>
+</body>
+</html>

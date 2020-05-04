@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="lesson">
+        <p>Let's play a game where we're trying to guard an art gallery from thieves. We want to place as few guards as possible but have the guards
+        be able to see all edges of our gallery.</p>
+        <p>Click in the gallery to place a guard, click and drag existing guards to move them, and drag guards out of the gallery to delete them.</p>
+        <p>Guards that you place will draw lines to all three corners of the gallery. No matter where you place a guard
+            in a triangular gallery, he will be able to see the whole gallery. This is because triangles are CONVEX polygons.</p>
+    </div>
+    <div class="container">
+        <div class="left">
+            <button class="navButton"></button>
+        </div>
+        <div class="middle">
+            <canvas id="artGallery">
+                Your browser doesn't support HTML5
+            </canvas>
+        </div>
+        <div class="right">
+            <button class="navButton" onclick="window.location.href = './harderShapes.html';">NEXT LESSON</button>
+        </div>
+    </div>
+
+    <script type=module>
+        import * as Gal from "./gallery.js";
+
+        let canvas = null;
+        let context = null;
+        let canvasWidth = 600;
+        let canvasHeight = 600;
+
+        window.onload = function() {
+            canvas = document.getElementById("artGallery");
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            context = canvas.getContext("2d");
+
+            let gallery = new Gal.Gallery(canvas, context, Gal.TRIANGLE, Gal.VERTEXMODE);
+
+            gallery.start();
+        }
+    </script>
+</body>
+</html>

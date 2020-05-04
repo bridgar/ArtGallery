@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="lesson">
+        <p>If a guard can see both ends of a wall, the guard can see the whole wall. Below, guards will light up walls that they're watching.</p>
+        <p>Some galleries are harder to guard than others! See if you can find the minimum number of guards for each of these galleries.</p>
+        <p>Remember, we want all of the walls to light up!</p>
+
+    </div>
+    <div class="container">
+        <div class="left">
+            <button class="navButton" onclick="window.location.href = './index.html';">PREVIOUS LESSON</button>
+        </div>
+        <div class="middle">
+            <canvas id="artGallery">
+                Your browser doesn't support HTML5
+            </canvas>
+            <button class="galleryButton" id="uButton">U Gallery</button>
+            <button class="galleryButton" id="spiralButton">Spiral Gallery</button>
+            <button class="galleryButton" id="combButton">Comb Gallery</button>
+            <input type="number" class="galleryAnswer" id="uAnswer" />
+            <input type="number" class="galleryAnswer" id="spiralAnswer" />
+            <input type="number" class="galleryAnswer" id="combAnswer" />
+            <button class="check" id="checkButton">Check!</button>
+        </div>
+        <div class="right">
+            <button class="navButton" onclick="window.location.href = './triangulation.html';">NEXT LESSON</button>
+        </div>
+    </div>
+
+    <script type=module>
+        import * as Gal from "./gallery.js";
+
+        let canvas = null;
+        let context = null;
+        let canvasWidth = 600;
+        let canvasHeight = 600;
+        let gallery = null;
+
+        window.onload = function() {
+            canvas = document.getElementById("artGallery");
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            context = canvas.getContext("2d");
+
+            let uButton = document.getElementById("uButton");
+            let spiralButton = document.getElementById("spiralButton");
+            let combButton = document.getElementById("combButton");
+
+            uButton.onclick = function(e) {
+                gallery = new Gal.Gallery(canvas, context, Gal.VEE, Gal.EDGEMODE);
+                gallery.start();
+            }
+            spiralButton.onclick = function(e) {
+                gallery = new Gal.Gallery(canvas, context, Gal.SPIRAL, Gal.EDGEMODE);
+                gallery.start();
+            }
+            combButton.onclick = function(e) {
+                gallery = new Gal.Gallery(canvas, context, Gal.COMB, Gal.EDGEMODE);
+                gallery.start();
+            }
+
+            let uAnswer = document.getElementById("uAnswer");
+            let spiralAnswer = document.getElementById("spiralAnswer");
+            let combAnswer = document.getElementById("combAnswer");
+            document.getElementById("checkButton").onclick = function(e) {
+                if(uAnswer.value == 2 && spiralAnswer.value == 4 && combAnswer.value == 4) {
+                    alert("Great Job!")
+                } else {
+                    alert("Almost, try again!");
+                }
+            }
+
+            gallery = new Gal.Gallery(canvas, context, Gal.VEE, Gal.EDGEMODE);
+            gallery.start();
+        }
+    </script>
+</body>
+</html>
