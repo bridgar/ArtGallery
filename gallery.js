@@ -9,6 +9,8 @@ export let TRIANGLE = 0;
 export let VEE = 1;
 export let COMB = 2;
 export let SPIRAL = 3;
+export let OCTAGON = 4;
+export let WEIRD = 5;
 
 export let VERTEXMODE = 0;
 export let EDGEMODE = 1;
@@ -81,6 +83,10 @@ export class Gallery {
             this.polygon = Geom.makeComb();
         } else if(galleryShape == SPIRAL) {
             this.polygon = Geom.makeSpiral();
+        } else if(galleryShape == OCTAGON) {
+            this.polygon = Geom.makeOctagon();
+        } else if(galleryShape == WEIRD) {
+            this.polygon = Geom.makeWeird();
         }
 
         this.guards = [];
@@ -212,7 +218,7 @@ export class Gallery {
                     if (this.selectedGuard === null) {
                         // see if the user is clicking an existing guard
                         for (let i = 0; i < this.guards.length; i++) {
-                            if (this.guards[i].pt.distanceTo(mousePoint) < guardRadius) {
+                            if (this.guards[i].pt.distanceTo(mousePoint) < guardRadius * 1.5) {
                                 this.selectedGuard = this.guards[i];
                                 // uncover this guard's covered edges
                                 for (let i = 0; i < this.selectedGuard.coveredEdges.length; i++) {
@@ -276,6 +282,7 @@ export class Gallery {
             this.context.stroke();
 
             this.context.strokeStyle = "#ff0000";
+            this.context.lineWidth = 3;
             this.context.beginPath();
             current = this.polygon;
             do {
@@ -285,6 +292,7 @@ export class Gallery {
                 current = current.next;
             } while (current != this.polygon)
             this.context.stroke();
+            this.context.lineWidth = 1;
         } else {
             this.context.strokeStyle = "#000000";
             this.context.beginPath();

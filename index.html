@@ -8,7 +8,9 @@
 <body>
     <div class="lesson">
         <p>Let's play a game where we're trying to guard an art gallery from thieves. We want to place as few guards as possible but have the guards
-        be able to see all edges of our gallery.</p>
+        be able to see the whole gallery.</p>
+        <p>The art in our gallery is on the walls, so the guards must be able to see the entirety of every edge of the gallery. If a guard can see both vertices for a given edge,
+        he can see the whole edge.</p>
         <p>Click in the gallery to place a guard, click and drag existing guards to move them, and drag guards out of the gallery to delete them.</p>
         <p>Guards that you place will draw lines to all three corners of the gallery. No matter where you place a guard
             in a triangular gallery, he will be able to see the whole gallery. This is because triangles are CONVEX polygons.</p>
@@ -21,6 +23,9 @@
             <canvas id="artGallery">
                 Your browser doesn't support HTML5
             </canvas>
+            <button class="galleryButton" id="triangleButton">Triangle Gallery</button>
+            <button class="galleryButton" id="octagonButton">Octagon Gallery</button>
+            <button class="galleryButton" id="weirdButton">Weird Gallery</button>
         </div>
         <div class="right">
             <button class="navButton" onclick="window.location.href = './harderShapes.html';">NEXT LESSON</button>
@@ -40,6 +45,23 @@
             canvas.width = canvasWidth;
             canvas.height = canvasHeight;
             context = canvas.getContext("2d");
+
+            let triangleButton = document.getElementById("triangleButton");
+            let octagonButton = document.getElementById("octagonButton");
+            let weirdButton = document.getElementById("weirdButton");
+
+            triangleButton.onclick = function(e) {
+                gallery = new Gal.Gallery(canvas, context, Gal.TRIANGLE, Gal.VERTEXMODE);
+                gallery.start();
+            }
+            octagonButton.onclick = function(e) {
+                gallery = new Gal.Gallery(canvas, context, Gal.OCTAGON, Gal.VERTEXMODE);
+                gallery.start();
+            }
+            weirdButton.onclick = function(e) {
+                gallery = new Gal.Gallery(canvas, context, Gal.WEIRD, Gal.VERTEXMODE);
+                gallery.start();
+            }
 
             let gallery = new Gal.Gallery(canvas, context, Gal.TRIANGLE, Gal.VERTEXMODE);
 

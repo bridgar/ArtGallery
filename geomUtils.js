@@ -89,6 +89,30 @@ export function makeSpiral(){
     return origin;
 }
 
+export function makeOctagon(){
+    let origin = new Vertex(200, 100);
+    let temp = origin;
+    let xCoords = [300, 400, 400, 300, 200, 100, 100];
+    let yCoords = [100, 200, 300, 400, 400, 300, 200];
+    for(let i = 0; i < xCoords.length; i++) {
+        temp.insert(xCoords[i], yCoords[i]);
+        temp = temp.next;
+    }
+    return origin;
+}
+
+export function makeWeird(){
+    let origin = new Vertex(200, 100);
+    let temp = origin;
+    let xCoords = [250, 500, 100, 100];
+    let yCoords = [100, 200, 500, 300];
+    for(let i = 0; i < xCoords.length; i++) {
+        temp.insert(xCoords[i], yCoords[i]);
+        temp = temp.next;
+    }
+    return origin;
+}
+
 export function isPointInsidePolygon(point, vertex){
     let inside = false;
     let current = vertex;
