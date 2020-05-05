@@ -218,7 +218,7 @@ export class Gallery {
                     if (this.selectedGuard === null) {
                         // see if the user is clicking an existing guard
                         for (let i = 0; i < this.guards.length; i++) {
-                            if (this.guards[i].pt.distanceTo(mousePoint) < guardRadius * 1.5) {
+                            if (this.guards[i].pt.distanceTo(mousePoint) < guardRadius * 2) {
                                 this.selectedGuard = this.guards[i];
                                 // uncover this guard's covered edges
                                 for (let i = 0; i < this.selectedGuard.coveredEdges.length; i++) {
