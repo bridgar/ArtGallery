@@ -120,6 +120,7 @@ export class Gallery {
         if(Geom.directionOfTwoLines(prev, vert, next) >= 1) {
             this.removeCuttableVertex(vert);
             alert("We can't cut vertices that would enlarge the polygon!");
+            this.inputManager.mouseDown = false; // fix alert bug
             return;
         }
 
@@ -129,6 +130,7 @@ export class Gallery {
             if(Geom.doesLineCrossEdge(prev, next, current)) {
                 this.removeCuttableVertex(vert);
                 alert("We can't cut vertices that would cause the polygon to cross over itself!");
+                this.inputManager.mouseDown = false; // fix alert bug
                 return;
             }
             current = current.next;
@@ -166,6 +168,7 @@ export class Gallery {
             this.polygon.next = this.polygon;
 
             alert("You decomposed the gallery into triangles!");
+            this.inputManager.mouseDown = false; // fix alert bug
         }
     }
 
