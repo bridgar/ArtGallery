@@ -8,11 +8,12 @@
 <body>
 <div class="lesson">
     <p>Finding the minimum number of guards for an arbitrary art gallery can be quite hard!</p>
-    <p>To make it a little easier, we can break any polygonal gallery into triangular subgalleries (without adding any vertices)!</p>
+    <p>To make it a little easier, we can break any polygonal gallery into triangular subgalleries by carefully removing vertices!
+    Remember that guarding convex galleries (like triangles) was easy.</p>
+    <p>The process of removing a vertex is quite simple: We connect the two neighbors of the vertex and then we erase the vertex along with its two edges.</p>
+    <p>Not all vertices can be removed at any time. If the new connection goes outside the polygon or crosses through an existing edge,
+    we can't remove that vertex yet. If you try to remove a vertex too early, it will turn red until you remove another vertex.</p>
     <p>Try decomposing the galleries from last lesson by clicking on vertices to remove them one at a time.</p>
-    <p>Not all vertices can be removed
-    for a given polygon. If you try to remove the wrong vertex, it will turn red until you successfully remove another vertex.
-    Keep trying until you find it, there's always at least one vertex that can be removed!</p>
 
 </div>
 <div class="container">
